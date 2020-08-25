@@ -1,0 +1,116 @@
+  
+   <table className="ms-table">
+                <thead>
+                  <tr>
+                    <th>{text("Appointment")}</th>
+                    <th>{text("Operators")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.todayAppointments.map((appointment) => (
+                    <tr key={appointment._id} className="home-td">
+                      <td>
+                        <ProfileSquaredComponent
+                          text={
+                            appointment.treatment
+                              ? appointment.treatment.item
+                              : ""
+                          }
+                          subText={
+                            (
+                              appointment.patient || {
+                                name: "",
+                              }
+                            ).name
+                          }
+                        />
+                      </td>
+                      <td>
+                        {appointment.operatingStaff.map((operator) => (
+                          <div key={operator._id}>
+                            <Col xxl={0} xl={0} lg={0} md={0} sm={0} xs={24}>
+                              <div key={operator._id} className="m-t-5 fs-11">
+                                {operator.name}
+                              </div>
+                            </Col>
+                            <Col
+                              xxl={24}
+                              xl={24}
+                              lg={24}
+                              md={24}
+                              sm={24}
+                              xs={0}
+                            >
+                              <ProfileComponent
+                                key={operator._id}
+                                name={operator.name}
+                                onRenderInitials={() => (
+                                  <span>{operator.name[0]}</span>
+                                )}
+                                size={3}
+                                onClick={() => {
+                                  router.go(["staff", operator._id]);
+                                }}
+                                className="pointer"
+                              />
+                            </Col>
+                          </div>
+                        ))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+
+              {this.tomorrowAppointments.map((appointment) => (
+                    <tr key={appointment._id} className="home-td">
+                      <td>
+                        <ProfileSquaredComponent
+                          text={
+                            appointment.treatment
+                              ? appointment.treatment.item
+                              : ""
+                          }
+                          subText={
+                            (
+                              appointment.patient || {
+                                name: "",
+                              }
+                            ).name
+                          }
+                        />
+                      </td>
+                      <td>
+                        {appointment.operatingStaff.map((operator) => (
+                          <div key={operator._id}>
+                            <Col xxl={0} xl={0} lg={0} md={0} sm={0} xs={24}>
+                              <div key={operator._id} className="m-t-5 fs-11">
+                                {operator.name}
+                              </div>
+                            </Col>
+                            <Col
+                              xxl={24}
+                              xl={24}
+                              lg={24}
+                              md={24}
+                              sm={24}
+                              xs={0}
+                            >
+                              <ProfileComponent
+                                key={operator._id}
+                                name={operator.name}
+                                size={3}
+                                onRenderInitials={() => (
+                                  <span>{operator.name[0]}</span>
+                                )}
+                                onClick={() => {
+                                  router.go(["staff", operator._id]);
+                                }}
+                              />
+                            </Col>
+                          </div>
+                        ))}
+                      </td>
+                    </tr>
+                  ))}

@@ -1,0 +1,45 @@
+  <Panel
+          isOpen={this.state.openAppointment}
+          type={PanelType.medium}
+          customWidth={"100%"}
+          closeButtonAriaLabel="Close"
+          isLightDismiss={true}
+          onDismiss={() => {
+            this.setState({ openInsurance: false });
+          }}
+          onRenderNavigation={() => {
+            return (
+              <Row className="panel-heading">
+                <Col span={22}>
+                  <ProfileComponent
+                    name={this.props.patient!.name}
+                    secondaryElement={<div>{text("Patient Appointment")}</div>}
+                    size={3}
+                  />
+                </Col>
+                <Col span={2} className="close">
+                  <IconButton
+                    iconProps={{ iconName: "cancel" }}
+                    onClick={() => {
+                      this.setState({ openAppointment: false });
+                    }}
+                  />
+                </Col>
+              </Row>
+            );
+          }}
+        >
+           <AsyncComponent
+                key=""
+                loader={async () => {
+                  const Component = (await import("../../insurance/components/page.insurance")).Insurances;
+                  return <Component />;
+                }}
+              />
+        </Panel>
+
+
+
+          
+
+                   
